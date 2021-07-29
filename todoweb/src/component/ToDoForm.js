@@ -8,12 +8,15 @@ const ToDoForm = ({newToDoName, setNewToDoName, todoItems, setToDoItems, filterT
     {
         e.preventDefault()
         
-        // Adds new item to list
-        setToDoItems(
+        if (newToDoName !== "")
+        {
+            // Adds new item to list
+            setToDoItems(
             [ ...todoItems, { name: newToDoName, status: "Pending", id: nextId() } ] )
 
-        // Resets our input box
-        setNewToDoName("")
+            // Resets our input box
+            setNewToDoName("")
+        }
     }
 
     // Gets the new name for the app
