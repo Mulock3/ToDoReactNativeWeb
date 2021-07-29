@@ -2,7 +2,7 @@ import React from 'react';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
-const ToDo = ({todo, key, name, status, setToDoItems, todoItems}) => 
+const ToDo = ({todo, name, status, setToDoItems, todoItems}) => 
 {
 
     // Deletes the to do item
@@ -39,6 +39,7 @@ const ToDo = ({todo, key, name, status, setToDoItems, todoItems}) =>
                     return {...todoItem, status: "Pending"}
                 }
             }
+            return todoItem
         }))
     }
     

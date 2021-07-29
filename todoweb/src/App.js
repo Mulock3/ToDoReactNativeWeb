@@ -18,20 +18,20 @@ function App() {
     filterHandler()
     }, [todoItems, filterTag, filterString])
 
+  // Filters by Name and Status
   const filterHandler = () => 
   {
-      if (filterTag === "Completed" || filterTag === "Pending")
-      {
-        setFilteredToDoItems(todoItems.filter(( (el) => (el.status.toLowerCase() === filterTag.toLowerCase()) && (el.name.toLowerCase().includes(filterString.toLowerCase())))))
-      }
-      else if (filterTag === "All" && filterString !== "")
-      {
+    switch(filterTag) {
+      case "Completed":
+        setFilteredToDoItems(todoItems.filter(( (el) => ( (el.status.toLowerCase() === "completed") && (el.name.toLowerCase().includes(filterString.toLowerCase() )) ) )))
+        break;
+      case "Pending": 
+        setFilteredToDoItems(todoItems.filter(( (el) => ( (el.status.toLowerCase() === "pending") && (el.name.toLowerCase().includes(filterString.toLowerCase() )) ) )))
+        break;
+      default: 
         setFilteredToDoItems(todoItems.filter(( (el) => (el.name.toLowerCase().includes(filterString.toLowerCase())))))
-      }
-      else if (filterTag === "All" && filterString === "")
-      {
-        setFilteredToDoItems(todoItems)
-      }
+        break;
+    }
   }
 
   return (

@@ -34,14 +34,14 @@ const ToDoForm = ({newToDoName, setNewToDoName, todoItems, setToDoItems, filterT
         setFilterString(e.target.value)
     }
 
-
-
     // Creates our basic form if we want to add a ToDo item
     return(
     <div>
         <form>
             
             <div className="todoFilter" >
+                <h3 className="h3Header">Search</h3>
+                <div>
                 <input type="text" className="todoTextInput" placeholder="Search Name..." onChange={searchToDoItemsString}/>
 
                 <select name="ToDoItemSelection" className="ToDoStatusFilter" onChange={searchToDoItemsTag}>
@@ -49,12 +49,12 @@ const ToDoForm = ({newToDoName, setNewToDoName, todoItems, setToDoItems, filterT
                     <option value="Completed">Completed</option>
                     <option value="Pending">Pending</option>
                 </select>
-
+                </div>
             </div>
         </form>
 
         <form>
-            <div className="todoFilter">
+            <div className="newToDo">
                 <input value={newToDoName} type="text" className="todoTextInput" placeholder="New Name..." onChange={newToDoNameHandler}/>
                 <button type="submit" className="todoButton" onClick={newToDoItem}>Create To Do Item</button>
             </div>
