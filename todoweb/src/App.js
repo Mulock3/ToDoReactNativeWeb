@@ -8,6 +8,7 @@ function App() {
 
   // Variable to pass New ToDo item back
   const[newToDoName, setNewToDoName] = useState("");
+  const[todoItems, setToDoItems] = useState([])
 
   return (
     <div className="App">
@@ -15,9 +16,9 @@ function App() {
           To Do List
       </header>
 
-      <ToDoForm setNewToDoName={setNewToDoName}/>
+      <ToDoForm newToDoName={newToDoName} setNewToDoName={setNewToDoName} todoItems={todoItems} setToDoItems={setToDoItems}/>
 
-      <ToDoList />
+      <ToDoList todoItems={todoItems} />
     </div>
   );
 }

@@ -13,14 +13,41 @@
   color: white;
 }
 
+.h3Header {
+  padding: 1pt;
+  margin: 0pt;
+}
+
 .todoFilter {
   padding: 5pt;
+}
+
+.todoItem {
+  margin-top: 5pt;
+  background-color: white;
+  padding: 5pt;
+  border-radius: 3pt; 
+  border: 0pt;
+}
+
+ul {
+  list-style-type: none;
+  padding-left: 0pt;
 }
 
 .todoTextInput{
   margin-left: 5pt;
   border-radius: 3pt;
   border: 0pt;
+  padding-left: 2pt;
+}
+
+.todoItemTextInput{
+  background-color: rgb(231, 231, 231);
+  margin-left: 5pt;
+  border-radius: 3pt;
+  border: 0pt;
+  text-align: center;
 }
 
 .todoButton {
