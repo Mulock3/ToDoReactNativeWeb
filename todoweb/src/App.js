@@ -1,23 +1,23 @@
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import ToDoForm from './component/ToDoForm';
+import ToDoList from './component/ToDoList';
 
+// Creates the basic landing page for the app
 function App() {
+
+  // Variable to pass New ToDo item back
+  const[newToDoName, setNewToDoName] = useState("");
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+          To Do List
       </header>
+
+      <ToDoForm setNewToDoName={setNewToDoName}/>
+
+      <ToDoList />
     </div>
   );
 }
