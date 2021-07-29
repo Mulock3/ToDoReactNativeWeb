@@ -11,6 +11,7 @@ const ToDoList = ({filteredToDoItems, todoItems, setToDoItems}) =>
                     todo={todo}
                     key={todo.id} 
                     name={todo.name} 
+                    desc={todo.description}
                     status={todo.status} 
                     setToDoItems={setToDoItems} 
                     todoItems={todoItems}/>)

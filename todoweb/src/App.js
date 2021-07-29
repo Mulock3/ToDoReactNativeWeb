@@ -8,14 +8,21 @@ function App() {
 
   // Variable to pass New ToDo item back
   const[newToDoName, setNewToDoName] = useState("")
+  const[newToDoDesc, setNewToDoDesc] = useState("")
   const[filterTag, setFilterTag] = useState("All")
   const[filterString, setFilterString] = useState("")
   const[filteredToDoItems, setFilteredToDoItems] = useState([])
   const[todoItems, setToDoItems] = useState([])
 
-  // Gets called on State Update
+  // Only occurs on start
+  useEffect(() => { 
+    returnLocalToDoItems()
+    }, [])
+
+  // Gets called on State Updates for the items below
   useEffect(() => { 
     filterHandler()
+    saveLocalToDoItems()
     }, [todoItems, filterTag, filterString])
 
   // Filters by Name and Status
@@ -34,6 +41,23 @@ function App() {
     }
   }
 
+  // Saving our Data Locally
+  const saveLocalToDoItems = () => 
+  {
+    localStorage.setItem("todoItems", JSON.stringify(todoItems))
+  }
+
+  // Loads Local Data
+  const returnLocalToDoItems = () => 
+  {
+    // If they do not exist
+    if(localStorage.getItem("todoItems") !== null)
+    {
+      let todoStorage = JSON.parse(localStorage.getItem("todoItems"))
+      setToDoItems(todoStorage)
+    }
+  }
+
   return (
     <div className="App">
       <header className="App-header">
@@ -43,6 +67,8 @@ function App() {
       <ToDoForm 
       newToDoName={newToDoName} 
       setNewToDoName={setNewToDoName} 
+      newToDoDesc={newToDoDesc}
+      setNewToDoDesc={setNewToDoDesc}
       todoItems={todoItems} 
       setToDoItems={setToDoItems}
       filterTag={filterTag}

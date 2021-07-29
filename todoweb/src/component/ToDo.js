@@ -2,14 +2,15 @@ import React, {useState, useEffect} from 'react';
 import { confirmAlert } from 'react-confirm-alert'; // Import
 import 'react-confirm-alert/src/react-confirm-alert.css'; // Import css
 
-const ToDo = ({todo, name, status, setToDoItems, todoItems}) => 
+const ToDo = ({todo, name, desc, status, setToDoItems, todoItems}) => 
 {
     const[todoName, setToDoName] = useState("")
-    var tempName = "donald";
+    const[todoDesc, setToDoDesc] = useState("")
 
     // Gets called on create
     useEffect(() => { 
         setToDoName(name)
+        setToDoDesc(desc)
         }, [])
 
     // Deletes the to do item
@@ -63,16 +64,30 @@ const ToDo = ({todo, name, status, setToDoItems, todoItems}) =>
         }))
     }
 
+    // Changes Items Description
+    const descHandler = (e) => 
+    {
+        setToDoDesc(e.target.value)
+        setToDoItems(todoItems.map( (todoItem) => {
+            if (todoItem.id === todo.id)
+            {
+                return {...todoItem, description: todoDesc}
+            }
+            return todoItem
+        }))
+    }
+
     return(
         <div className="todoItem">
             <div>
                 <h3 className="h3Header" >{status}</h3>
             </div>
             <div>
-                <input value={todoName} className="todoItemTextInput" onChange={nameHandler}/>
+                <input value={todoName} className="todoItemTextInput" onChange={nameHandler} maxlength="25"/>
                 <button className="todoButton" onClick={statusHandler}>Change Status</button>
                 <button className="todoButton" onClick={deleteHandler}>Delete</button>
             </div>
+            <input value={todoDesc} className="todoItemTextInput" onChange={descHandler} maxlength="25"/>
         </div>
 
     );

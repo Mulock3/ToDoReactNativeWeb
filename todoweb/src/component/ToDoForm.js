@@ -1,7 +1,7 @@
 import React from 'react';
 import nextId from "react-id-generator";
 
-const ToDoForm = ({newToDoName, setNewToDoName, todoItems, setToDoItems, filterTag, setFilterTag, filterString, setFilterString, setFilteredToDoItems}) => 
+const ToDoForm = ({newToDoName, setNewToDoName, newToDoDesc, setNewToDoDesc, todoItems, setToDoItems, filterTag, setFilterTag, filterString, setFilterString, setFilteredToDoItems}) => 
 {
     // Creates new To Do item and adds to list
     const newToDoItem = (e) => 
@@ -12,7 +12,7 @@ const ToDoForm = ({newToDoName, setNewToDoName, todoItems, setToDoItems, filterT
         {
             // Adds new item to list
             setToDoItems(
-            [ ...todoItems, { name: newToDoName, status: "Pending", id: nextId() } ] )
+            [ ...todoItems, { name: newToDoName, description: newToDoDesc, status: "Pending", id: nextId() } ] )
 
             // Resets our input box
             setNewToDoName("")
@@ -23,6 +23,12 @@ const ToDoForm = ({newToDoName, setNewToDoName, todoItems, setToDoItems, filterT
     const newToDoNameHandler = (e) => {
         e.preventDefault();
         setNewToDoName(e.target.value)
+    }
+
+    // Gets the new description for the app
+    const newToDoDescHandler = (e) => {
+        e.preventDefault();
+        setNewToDoDesc(e.target.value)
     }
 
     // Searches to To Do itmes by Tag
@@ -58,7 +64,10 @@ const ToDoForm = ({newToDoName, setNewToDoName, todoItems, setToDoItems, filterT
 
         <form>
             <div className="newToDo">
-                <input value={newToDoName} type="text" className="todoTextInput" placeholder="New Name..." onChange={newToDoNameHandler}/>
+                <div>
+                    <input value={newToDoName} type="text" className="todoTextInput" placeholder="New Name..." onChange={newToDoNameHandler} maxlength="25"/>
+                    <input value={newToDoDesc} type="text" className="todoTextInput" placeholder="Short Description..." onChange={newToDoDescHandler} maxlength="25"/>
+                </div>
                 <button type="submit" className="todoButton" onClick={newToDoItem}>Create To Do Item</button>
             </div>
         </form>
