@@ -1,14 +1,19 @@
 import React from 'react';
 import ToDo from './ToDo';
-import ToDoForm from './ToDoForm';
 
-const ToDoList = ({todoItems}) => 
+const ToDoList = ({filteredToDoItems, todoItems, setToDoItems}) => 
 {
     return(
         <div className="todoListContainer">
             <ul className="todoList" >
-                {todoItems.map( (todo) => 
-                (<ToDo key={todo.id} name={todo.name} completed={todo.completed} />)
+                {filteredToDoItems.map( (todo) => 
+                (<ToDo 
+                    todo={todo}
+                    key={todo.id} 
+                    name={todo.name} 
+                    status={todo.status} 
+                    setToDoItems={setToDoItems} 
+                    todoItems={todoItems}/>)
                 )}
             </ul>
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import nextId from "react-id-generator";
 
-const ToDoForm = ({newToDoName, setNewToDoName, todoItems, setToDoItems}) => 
+const ToDoForm = ({newToDoName, setNewToDoName, todoItems, setToDoItems, filterTag, setFilterTag, filterString, setFilterString, setFilteredToDoItems}) => 
 {
     // Creates new To Do item and adds to list
     const newToDoItem = (e) => 
@@ -10,11 +10,10 @@ const ToDoForm = ({newToDoName, setNewToDoName, todoItems, setToDoItems}) =>
         
         // Adds new item to list
         setToDoItems(
-            [ ...todoItems, { name: newToDoName, completed: false, id: nextId() } ] )
+            [ ...todoItems, { name: newToDoName, status: "Pending", id: nextId() } ] )
 
         // Resets our input box
         setNewToDoName("")
-
     }
 
     // Gets the new name for the app
@@ -23,12 +22,19 @@ const ToDoForm = ({newToDoName, setNewToDoName, todoItems, setToDoItems}) =>
         setNewToDoName(e.target.value)
     }
 
-    // Searches to To Do itmes
-    const searchToDoItems = (e) => 
+    // Searches to To Do itmes by Tag
+    const searchToDoItemsTag = (e) => 
     {
-        e.preventDefault()
-        
+        setFilterTag(e.target.value)
     }
+
+    // Searches to To Do itmes by Tag
+    const searchToDoItemsString = (e) => 
+    {
+        setFilterString(e.target.value)
+    }
+
+
 
     // Creates our basic form if we want to add a ToDo item
     return(
@@ -36,15 +42,14 @@ const ToDoForm = ({newToDoName, setNewToDoName, todoItems, setToDoItems}) =>
         <form>
             
             <div className="todoFilter" >
-                <input type="text" className="todoTextInput" placeholder="Search Name..."/>
+                <input type="text" className="todoTextInput" placeholder="Search Name..." onChange={searchToDoItemsString}/>
 
-                <select name="ToDoItemSelection" className="ToDoStatusFilter" >
+                <select name="ToDoItemSelection" className="ToDoStatusFilter" onChange={searchToDoItemsTag}>
                     <option value="All">All</option>
                     <option value="Completed">Completed</option>
                     <option value="Pending">Pending</option>
                 </select>
 
-                <button type="submit" className="todoButton" onClick={searchToDoItems}>Search</button>
             </div>
         </form>
 

@@ -58,6 +58,14 @@ ul {
   border: 0pt;
 }
 
+.todoButton:hover {
+  margin-left: 5pt;
+  border-radius: 3pt;
+  background-color: #0039aa;
+  color: white;
+  border: 0pt;
+}
+
 .ToDoStatusFilter {
   margin-left: 5pt;
   border-radius: 3pt; 
