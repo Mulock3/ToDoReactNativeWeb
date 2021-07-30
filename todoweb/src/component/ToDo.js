@@ -55,6 +55,7 @@ const ToDo = ({todo, name, desc, status, setToDoItems, todoItems}) =>
     const nameHandler = (e) => 
     {
         setToDoName(e.target.value)
+        
         setToDoItems(todoItems.map( (todoItem) => {
             if (todoItem.id === todo.id)
             {
@@ -68,6 +69,7 @@ const ToDo = ({todo, name, desc, status, setToDoItems, todoItems}) =>
     const descHandler = (e) => 
     {
         setToDoDesc(e.target.value)
+
         setToDoItems(todoItems.map( (todoItem) => {
             if (todoItem.id === todo.id)
             {

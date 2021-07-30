@@ -12,10 +12,11 @@ const ToDoForm = ({newToDoName, setNewToDoName, newToDoDesc, setNewToDoDesc, tod
         {
             // Adds new item to list
             setToDoItems(
-            [ ...todoItems, { name: newToDoName, description: newToDoDesc, status: "Pending", id: nextId() } ] )
+            [ ...todoItems, { name: newToDoName, description: newToDoDesc, status: "Pending", id: nextId() + (Math.random() * 1001) } ] )
 
             // Resets our input box
             setNewToDoName("")
+            setNewToDoDesc("")
         }
     }
 
